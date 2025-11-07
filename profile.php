@@ -1,4 +1,5 @@
 <?php 
+    require_once('setting.php');
     include 'include/header.inc';
     
     session_start();
@@ -10,3 +11,7 @@
     }
     include 'include/footer.inc';
 ?>
+
+
+
+<button onclick="location.href='logout.php'">Log out</button>

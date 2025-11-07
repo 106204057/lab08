@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-    <?php include 'include/header.inc'; ?>
+<?php
+    require_once('setting.php');
 
-    <form action="process.php" method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="username" required><br>
+    session_start();
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-        <label for="password">Password:</label>
-        <input type="text" name="password" required><br>
+    $conn = mysqli_connect($host, $user, $pwd, $sql_db);
+    $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
+    $result = mysqli_query($conn, $query);
+    $user_account = mysqli_fetch_assoc($result);
 
-        <input type="hidden" name="token" value="abc123">
-        <input type="submit" value="Login">
-    </form>
-
-    <?php include 'include/footer.inc'; ?>
-</body>
-</html>
+    if ($user_account) {
+        $_SESSION['user'] = $user_account['username'];
+        header('Location: profile.php');
+        exit();
+    } else {
+        echo "Incorrect username or password.";
+    }
+?>
