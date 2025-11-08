@@ -16,6 +16,9 @@
         <label for="password">Password:</label>
         <input type="text" name="password" required><br>
 
+        <label for="email">Email:</label>
+        <input type="text" name="email" required pattern="^[A-Za-z0-9]+([._-][A-Za-z0-9]+)*@[A-Za-z0-9]+([.-][A-Za-z0-9]+)*\.[a-z]{2,}$"><br>
+
         <input type="hidden" name="token" value="abc123">
         <input type="submit" value="Signup">
     </form>
